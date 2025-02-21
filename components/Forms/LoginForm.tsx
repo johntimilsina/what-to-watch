@@ -59,6 +59,7 @@ export default function LoginForm() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
+                    className="bg-slate-50 dark:bg-slate-800"
                 />
             </div>
             <div className="space-y-2">
@@ -70,6 +71,7 @@ export default function LoginForm() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="bg-slate-50 dark:bg-slate-800"
                 />
             </div>
             {error && (
