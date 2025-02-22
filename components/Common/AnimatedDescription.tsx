@@ -4,7 +4,7 @@ import { TypeAnimation } from "react-type-animation"
 
 export default function AnimatedDescription() {
     return (
-        <div className="text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-700 dark:text-slate-200">
+        <div className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white">
             <TypeAnimation
                 sequence={[
                     "Discover new movies.",
@@ -19,6 +19,7 @@ export default function AnimatedDescription() {
                 wrapper="span"
                 speed={50}
                 repeat={Number.POSITIVE_INFINITY}
+                className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
             />
         </div>
     )

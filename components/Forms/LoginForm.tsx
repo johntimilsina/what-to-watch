@@ -51,7 +51,9 @@ export default function LoginForm() {
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username" className="text-white">
+                    Username
+                </Label>
                 <Input
                     id="username"
                     type="text"
@@ -59,11 +61,13 @@ export default function LoginForm() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    className="bg-slate-50 dark:bg-slate-800"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/50"
                 />
             </div>
             <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-white">
+                    Password
+                </Label>
                 <Input
                     id="password"
                     type="password"
@@ -71,16 +75,19 @@ export default function LoginForm() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="bg-slate-50 dark:bg-slate-800"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/50"
                 />
             </div>
             {error && (
-                <Alert variant="destructive">
+                <Alert variant="destructive" className="bg-red-500/10 border-red-500/20 text-red-200">
                     <AlertCircle className="h-4 w-4" />
                     <AlertDescription>{error}</AlertDescription>
                 </Alert>
             )}
-            <Button type="submit" className="w-full">
+            <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white"
+            >
                 Sign In
             </Button>
         </form>

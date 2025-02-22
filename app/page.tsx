@@ -1,24 +1,34 @@
+import Link from "next/link"
 import LoginForm from "@/components/Forms/LoginForm"
 import AnimatedDescription from "@/components/Common/AnimatedDescription"
+import { AppIcon } from "@/components/Common/AppIcon"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default function Home() {
+export default function LoginPage() {
   return (
-    <main className="flex min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
-      <div className="flex-1 flex flex-col justify-center p-8 md:p-12 lg:p-16">
-        <AnimatedDescription />
-      </div>
-      <div className="flex-1 flex items-center justify-center p-8">
-        <Card className="w-full max-w-md">
+    <main className="min-h-screen bg-gradient-to-br from-blue-950 via-purple-900 to-blue-900 p-4 md:p-8">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center min-h-[calc(100vh-4rem)]">
+        <div className="w-full max-w-md mb-8 md:mb-0 md:mr-8">
+          <AnimatedDescription />
+        </div>
+        <Card className="w-full max-w-md bg-black/30 border-white/10 backdrop-blur-xl">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">What to Watch</CardTitle>
-            <CardDescription className="text-center">Sign in to get personalized movie suggestions</CardDescription>
+            <div className="w-32 h-8 relative mx-auto mb-4">
+              <AppIcon className="w-full h-full" />
+            </div>
+            <CardTitle className="text-2xl font-bold text-center text-white">Welcome Back</CardTitle>
+            <CardDescription className="text-center text-blue-200">
+              Sign in to get personalized movie suggestions
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <LoginForm />
-            <div className="mt-4 flex flex-col space-y-2">
-              <Button variant="outline" className="w-full">
+            <div className="mt-6 flex flex-col space-y-4">
+              <Button
+                variant="outline"
+                className="w-full border-white/10 hover:bg-white/10 hover:text-white"
+              >
                 <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                   <path
                     fill="currentColor"
@@ -39,9 +49,17 @@ export default function Home() {
                 </svg>
                 Sign in with Google
               </Button>
-              <Button variant="secondary" className="w-full">
-                Try without login
-              </Button>
+              <Link href="/recommend" className="w-full">
+                <Button variant="secondary" className="w-full bg-white/5 hover:bg-white/10 text-white border-0">
+                  Try without login
+                </Button>
+              </Link>
+              <div className="text-center mt-4 text-blue-200">
+                Don't have an account?{" "}
+                <Link href="/signup" className="text-purple-400 hover:text-purple-300 underline">
+                  Sign up
+                </Link>
+              </div>
             </div>
           </CardContent>
         </Card>
