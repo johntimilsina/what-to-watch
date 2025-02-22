@@ -1,8 +1,12 @@
 "use client"
 
 import type React from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { signOutUser } from '@/lib/auth'
+import { auth } from "@/lib/firebase"
+import { User } from "firebase/auth";
 
-import { useState } from "react"
 import Link from "next/link"
 import { AppIcon } from "@/components/Common/AppIcon"
 import { Button } from "@/components/ui/button"
@@ -15,11 +19,25 @@ const genres = ["Action", "Comedy", "Drama", "Sci-Fi", "Horror", "Romance", "Thr
 const moods = ["Happy", "Sad", "Excited", "Relaxed", "Tense", "Thoughtful"]
 
 export default function RecommendPage() {
+    const [user, setUser] = useState<User | null>(null);
     const [prompt, setPrompt] = useState("")
     const [selectedGenres, setSelectedGenres] = useState<string[]>([])
     const [selectedMoods, setSelectedMoods] = useState<string[]>([])
     const [recommendations, setRecommendations] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter()
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (!user) router.push("/");
+            else {
+                console.log('user', user)
+                setUser(user);
+            }
+        });
+
+        return () => unsubscribe();
+    }, [router]);
 
     const handleGenreToggle = (genre: string) => {
         setSelectedGenres((prev) => (prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]))
